@@ -14,7 +14,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'firebase',
-    'ngMask'
+    'ngMask',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider

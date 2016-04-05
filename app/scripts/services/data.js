@@ -25,10 +25,10 @@ angular.module('ngGridApp')
       },
       validateSchema: function () {
         validatedProps = props.map(function (el) {
-          if (!'Name' in el) return false;
-          if (!('DataType' in el && dataTypes.indexOf(el.DataType) > -1)) return false;
-          if (!'CalculateFrom' || !Array.isArray(el.CalculateFrom)) return false;
-          if (!'IsRequired' in el || typeof el.IsRequired !== 'boolean') return false;
+          if (!('Name' in el)){return false;}
+          if (!('DataType' in el && dataTypes.indexOf(el.DataType) > -1)) {return false;}
+          if (!'CalculateFrom' || !Array.isArray(el.CalculateFrom)) {return false;}
+          if (!('IsRequired' in el || typeof el.IsRequired !== 'boolean')) {return false;}
           return true;
         });
 
@@ -44,7 +44,7 @@ angular.module('ngGridApp')
       validate: function (data) {
         props.forEach(function(prop) {
           var name = prop.name;
-          var type = prop.dataType;
+          //var type = prop.dataType;
           var isRequired = prop.isRequired;
           var isNotPresent = false;
 

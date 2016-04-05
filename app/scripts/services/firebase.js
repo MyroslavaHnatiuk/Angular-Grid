@@ -2,6 +2,7 @@
 angular.module('ngGridApp')
   .factory('factoryCRUD', ['$firebaseObject', '$window', '$firebaseArray', function ($firebaseObject, $window, $firebaseArray) {
     var ref = new $window.Firebase("https://scorching-heat-8748.firebaseio.com");
+
     return {
       getReference: function () {
         return ref;
@@ -12,6 +13,7 @@ angular.module('ngGridApp')
           date: date.getTime()
         };
         console.log(birthDay);
+
         var registrationDate = {
           date: Firebase.ServerValue.TIMESTAMP
         };
@@ -29,7 +31,7 @@ angular.module('ngGridApp')
       },
 
       delete: function(id) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function(resolve) {
           if(ref.child(id).remove()){
             resolve({status: 'deleted'});
           }else {
@@ -37,5 +39,5 @@ angular.module('ngGridApp')
           }
         });
       }
-    }
+    };
   }]);
