@@ -9,22 +9,23 @@
  * Main module of the application.
  */
 angular
-  .module('ngGridApp', [
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'firebase',
-    'ngMask',
-    'ui.bootstrap'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+    .module('ngGridApp', [
+        'ngResource',
+        'ngRoute',
+        'ngSanitize',
+        'firebase',
+        'ngMask',
+        'ui.bootstrap',
+        'ngTable'
+    ])
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl',
+                controllerAs: 'main'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    });

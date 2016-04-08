@@ -1,66 +1,76 @@
 <div class="container">
-  <h2>Add Data</h2>
-  <form class="form-horizontal" role="form" name="UserForm" ng-submit="addNew()" novalidate>
-    <div class="form-group" ng-class="{'has-error': UserForm.login.$error.required}">
-      <label for="" class="col-sm-2 control-label">Login:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="" name="login" ng-model="login" required>
-        <div ng-show="!UserForm.login.$pristine && UserForm.login.$error.required" class="">
-          Enter login
+    <h2>Add Data</h2>
+    <form class="form-horizontal" role="form" name="UserForm" ng-submit="addNew()" novalidate>
+        <div class="form-group" ng-class="{'has-error': UserForm.login.$error.required}">
+            <label for="" class="col-sm-2 control-label">Login:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="" name="login" ng-model="login" required>
+                <div ng-show="!UserForm.login.$pristine && UserForm.login.$error.required" class="">
+                    Enter login
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="form-group" ng-class="{'has-error': UserForm.password.$error.required}">
-      <label for="password" class="col-sm-2 control-label">Password:</label>
-      <div class="col-sm-10">
-        <input type="password" name="password" class="form-control" id="password" ng-model="password" required>
-        <div ng-show="!UserForm.password.$pristine && UserForm.password.$error.required" class="">
-          Enter password
+        <div class="form-group" ng-class="{'has-error': UserForm.password.$error.required}">
+            <label for="password" class="col-sm-2 control-label">Password:</label>
+            <div class="col-sm-10">
+                <input type="password" name="password" class="form-control" id="password" ng-model="password" required>
+                <div ng-show="!UserForm.password.$pristine && UserForm.password.$error.required" class="">
+                    Enter password
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="form-group " ng-class="{'has-error': !UserForm.date.$pristine && UserForm.date.$error.pattern}">
-      <label class="col-sm-2 control-label">Birth Day:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" name="date" ng-model="birthDay" is-open="popup1.opened" ng-click="open1()"  ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly/>
+        <div class="form-group " ng-class="{'has-error': !UserForm.date.$pristine && UserForm.date.$error.pattern}">
+            <label class="col-sm-2 control-label">Birth Day:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" name="date"
+                       ng-model="birthDay" is-open="popup1.opened" ng-click="open1()" ng-required="true"
+                       close-text="Close" alt-input-formats="altInputFormats" readonly/>
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
           </span>
-        <!--<input type="date" class="form-control" id="year" name="date" ng-model="birthDay" ng-pattern="reg" required/>-->
-        <div ng-show="!UserForm.date.$pristine && UserForm.date.$error.pattern" class="">
-          Enter correct date
-          <b>mm/dd/yyyy</b>
+                <!--<input type="date" class="form-control" id="year" name="date" ng-model="birthDay" ng-pattern="reg" required/>-->
+                <div ng-show="!UserForm.date.$pristine && UserForm.date.$error.pattern" class="">
+                    Enter correct date
+                    <b>mm/dd/yyyy</b>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <button type="submit" class="add-btn">
-      <i class="fa fa-plus-circle fa-3x"></i>
-    </button>
-  </form>
-  <h2 class="inline">Striped Rows</h2>
+        <button type="submit" class="add-btn">
+            <i class="fa fa-plus-circle fa-3x"></i>
+        </button>
+    </form>
+    <h2 class="inline">Striped Rows</h2>
 
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Login</th>
-      <th>Password</th>
-      <th>Birth Day</th>
-      <th>RegistrationDate</th>
-      <th>Age</th>
-      <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="userData in userDatas">
-      <td>{{userData.login}}</td>
-      <td>{{userData.password}}</td>
-      <td>{{userData.birthDay.date | date}}</td>
-      <td>{{userData.registrationDate.date | date}}</td>
-      <td>{{userData.calculate}}</td>
-      <td class="text-center" data-id="{{userData._id}}" ng-click="delete($event)"><i class="fa fa-trash-o"></i></td>
-    </tr>
-    </tbody>
-  </table>
+    <!--<table class="table table-striped">-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<th>Login</th>-->
+    <!--<th>Password</th>-->
+    <!--<th>Birth Day</th>-->
+    <!--<th>RegistrationDate</th>-->
+    <!--<th>Age</th>-->
+    <!--<th>Delete</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr ng-repeat="userData in getUserData()">-->
+
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+
+    <table ng-table="tableParamsUsers" class="table table-striped">
+        <tr ng-repeat="row in $data track by $index">
+            <td data-title="'Login'">{{row.login}}</td>
+            <td data-title="'Password'">{{row.password}}</td>
+            <td data-title="'Birth Day'">{{row.birthDay.date | date}}</td>
+            <td class="text-center" data-title="'Registration Date'">{{row.registrationDate.date | date}}</td>
+            <td data-title="'Age'">{{row.calculate}}</td>
+            <td data-title="'Action'" class="text-center" ><a href="" ng-click="delete(row._id)"> <i
+                    class="fa fa-trash-o"></i></a></td>
+        </tr>
+    </table>
 </div>
 
 <mh-grid-directive></mh-grid-directive>

@@ -59,12 +59,12 @@ body {
   margin-top: 28px;
 }
 .form-control{
-  padding: 6px 55px;
   position: relative;
 }
 .input-group-btn{
   position: absolute;
   top: 0px;
+  right: 49px;
 }
 
 /* Responsive: Portrait tablets and up */
